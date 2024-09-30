@@ -1,3 +1,4 @@
+import 'package:blue_archive_quiz/about_screen.dart';
 import 'package:blue_archive_quiz/data/questions.dart';
 import 'package:blue_archive_quiz/question_summary.dart';
 import 'package:flutter/material.dart';
@@ -54,14 +55,25 @@ class ResultScreen extends StatelessWidget {
             QuestionSummary(summaryData),
             const SizedBox(height: 30,),
             TextButton.icon(
-            onPressed: onRestart, 
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
+              onPressed: onRestart, 
+              style: OutlinedButton.styleFrom(
+                foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+              ),
+              icon: const Icon(Icons.loop_sharp),
+              label: const Text('Restart Quiz!'),
             ),
-            icon: const Icon(Icons.loop_sharp),
-            label: const Text('Restart Quiz!'),
-          )
-          ],
+            const SizedBox(height: 30,),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const AboutScreen()));
+              }, 
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.white,
+              ),
+              icon: const Icon(Icons.question_answer_outlined),
+              label: const Text('About Quiz!'),
+              ),
+            ],
         ),
       ),
     );

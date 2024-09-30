@@ -11,12 +11,13 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      input, 
-      style: GoogleFonts.lato(
-        color: Colors.white,
-        fontSize: 24,
-      ),
-    );
+    return Text(input, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color:Theme.of(context).colorScheme.onSurface));
+    // Text(
+    //   input, 
+    //   style: GoogleFonts.lato(
+    //     color: Colors.white,
+    //     fontSize: 24,
+    //   ),
+    // );
   }
 }

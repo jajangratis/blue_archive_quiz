@@ -1,3 +1,4 @@
+import 'package:blue_archive_quiz/components/title_text.dart';
 import 'package:blue_archive_quiz/data/questions.dart';
 import 'package:blue_archive_quiz/question_screen.dart';
 import 'package:blue_archive_quiz/result_screen.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:blue_archive_quiz/start_screen.dart';
 
 class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+  const Quiz(Null Function() param0, {super.key});
 
   @override
   State<Quiz> createState() {
@@ -16,6 +17,8 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   var activeScreen = 'start-screen';
+  // ignore: prefer_typing_uninitialized_variables
+  var backButton;
   List<String> selectedAnswer = [];
 
   // @override
@@ -37,6 +40,7 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswer.length == questions.length) {
       setState(() {
         activeScreen = 'results-screen';
+        backButton = null;
         // selectedAnswer = [];
       });
     }
@@ -56,15 +60,13 @@ class _QuizState extends State<Quiz> {
       
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 139, 193, 237),
+          centerTitle: false,
+        ),
         body: Container(
           decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomLeft,
-                colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 81, 83, 181),
-              ]),
+              color: Color.fromARGB(255, 139, 193, 237)
             ),
           child:  screenWidget,
         ),

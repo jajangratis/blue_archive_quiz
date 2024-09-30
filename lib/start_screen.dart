@@ -1,4 +1,5 @@
 
+import 'package:blue_archive_quiz/about_screen.dart';
 import 'package:blue_archive_quiz/components/title_text.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,18 @@ class StartScreen extends StatelessWidget {
             ),
             icon: const Icon(Icons.arrow_right),
             label: const Text('Start Quiz!'),
-          )
+          ),
+          const SizedBox(height: 30,),
+          OutlinedButton.icon(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const AboutScreen()));
+            }, 
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+            ),
+            icon: const Icon(Icons.question_answer_outlined),
+            label: const Text('About Quiz!'),
+          ),
         ],
       )
     );

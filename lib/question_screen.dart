@@ -35,13 +35,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              textAlign: TextAlign.center,
-              currentQuestion.text, 
-              style: GoogleFonts.lato(
-                color: const Color.fromARGB(255, 54, 73, 149),
-                fontSize: 24,
-                fontWeight: FontWeight.bold
-              )
+              currentQuestion.text,textAlign: TextAlign.center, 
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(color:Theme.of(context).colorScheme.onSurface)
             ),
             const SizedBox(height: 30,),
             Image.asset(
