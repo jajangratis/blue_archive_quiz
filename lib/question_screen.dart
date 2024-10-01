@@ -26,35 +26,40 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIndex];
-    return  SizedBox(
-      width: double.infinity,
-      child: Container(
-        margin: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              currentQuestion.text,textAlign: TextAlign.center, 
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(color:Theme.of(context).colorScheme.onSurface)
-            ),
-            const SizedBox(height: 30,),
-            Image.asset(
-              currentQuestion.images, 
-              width: 200,
-              height: 150,
-              // color: const Color.fromARGB(86, 64, 123, 200),
-            ),
-            const SizedBox(height: 30,),
-            ...currentQuestion.shuffledAnswers.map((answer) {
-              return AnswerButton(
-                answerText: answer, 
-                onTap: () {
-                  answerQuestion(answer);
-                },
-              );
-            })
-          ],
+    return Center(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(currentQuestion.text,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface)),
+              const SizedBox(
+                height: 30,
+              ),
+              Image.asset(
+                currentQuestion.images,
+                width: 200,
+                height: 150,
+                // color: const Color.fromARGB(86, 64, 123, 200),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ...currentQuestion.shuffledAnswers.map((answer) {
+                return AnswerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answerQuestion(answer);
+                  },
+                );
+              })
+            ],
+          ),
         ),
       ),
     );

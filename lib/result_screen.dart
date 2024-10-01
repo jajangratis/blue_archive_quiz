@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({
-    super.key, 
+    super.key,
     required this.chosenAnswers,
     required this.onRestart,
   });
@@ -14,7 +14,7 @@ class ResultScreen extends StatelessWidget {
   final void Function() onRestart;
 
   final List<String> chosenAnswers;
-  
+
   List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -32,48 +32,55 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numTotalQuestions = questions.length;
-    final numCorrectQuestions = summaryData.where((data) => data['correct_answer'] == data['user_answer']).length;
+    final numCorrectQuestions = summaryData
+        .where((data) => data['correct_answer'] == data['user_answer'])
+        .length;
 
     return SizedBox(
       width: double.infinity,
-      child: Container(
-        margin: const EdgeInsets.all(40),
+      height: double.infinity,
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              textAlign: TextAlign.center,
-              "Kerja Bagus! $numCorrectQuestions out $numTotalQuestions Dijawab dengan benar", 
-              style: GoogleFonts.lato(
-                color: const Color.fromARGB(255, 56, 133, 241),
-                fontSize: 24,
-                fontWeight: FontWeight.bold
-              )
+                textAlign: TextAlign.center,
+                "Kerja Bagus! $numCorrectQuestions out $numTotalQuestions Dijawab dengan benar",
+                style: GoogleFonts.lato(
+                    color: const Color.fromARGB(255, 56, 133, 241),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold)),
+            const SizedBox(
+              height: 10,
             ),
-            const SizedBox(height: 10,),
             QuestionSummary(summaryData),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             TextButton.icon(
-              onPressed: onRestart, 
+              onPressed: onRestart,
               style: OutlinedButton.styleFrom(
                 foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
               ),
               icon: const Icon(Icons.loop_sharp),
               label: const Text('Restart Quiz!'),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             TextButton.icon(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const AboutScreen()));
-              }, 
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => const AboutScreen()));
+              },
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
               icon: const Icon(Icons.question_answer_outlined),
               label: const Text('About Quiz!'),
-              ),
-            ],
+            ),
+          ],
         ),
       ),
     );
